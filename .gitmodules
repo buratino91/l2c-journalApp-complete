@@ -1,0 +1,6 @@
+[submodule "infra"]
+	path = infra
+	url = https://github.com/buratino91/l2c-fastAPI-terraform.git
+[submodule "journal-starter"]
+	path = journal-starter
+	url = https://github.com/buratino91/journal-starter.git
