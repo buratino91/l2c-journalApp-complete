@@ -3,7 +3,7 @@ FROM python:3.11-slim
 
 WORKDIR /app 
 
-COPY app/journal-starter .
+COPY journal-starter/ .
 
 RUN pip install -r api/requirements.txt
 
