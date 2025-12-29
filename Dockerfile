@@ -5,6 +5,6 @@ WORKDIR /app
 
 COPY journal-starter/ .
 
-RUN pip install -r journal-starter/api/requirements.txt
+RUN pip install -r api/requirements.txt
 
 CMD [ "./start.sh" ]
