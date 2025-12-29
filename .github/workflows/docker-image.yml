@@ -14,5 +14,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Debug
+      run: |
+        echo "Current directory:"
+        pwd
+        echo "=== Root directory contents ==="
+        ls -la
+        echo "=== Looking for journal-starter ==="
+        ls -la journal-starter/ || echo "journal-starter directory not found"
+        echo "=== Looking for api ==="
+        ls -la api/ || echo "api directory not found"
+        echo "=== Full tree (if available) ==="
+        find . -name "requirements.txt" || echo "requirements.txt not found"
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag journalapp:$(date +%s)
