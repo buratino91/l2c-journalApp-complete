@@ -41,5 +41,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: glen912/l2c-journal_app:latest
           labels: ${{steps.meta.outputs.labels }}
