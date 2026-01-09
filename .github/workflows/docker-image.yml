@@ -9,7 +9,7 @@ on:
 jobs:
   run tests:
     name: Run tests using pytest
-    runs on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: checkout the repo
         uses: actions/checkout@v5
