@@ -1,0 +1,43 @@
+# Deployment and service for postgresdb
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-app-deployment
+  labels:
+    app: fastapi-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fastapi-app
+  template:
+    metadata:
+      labels:
+        app: fastapi-app
+    spec:
+      containers:
+      - name: fastapi-app
+        image: glen912/l2c-journal_app:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: DATABASE_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-app-service
+spec:
+  type: NodePort # Exposes the service. To allow access from browser
+  selector:
+    app: fastapi-app
+  ports:
+    - protocol: TCP
+      port: 8000 # Port number of service
+      targetPort: 8000 # same as container port
+      nodePort: 32600

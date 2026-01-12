@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prom-deployment
+  labels:
+    app: prom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prom
+  template:
+    metadata:
+      labels:
+        app: prom
+    spec:
+      containers:
+      - name: prom
+        image: prom/prometheus:latest
+        ports:
+          - containerPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prom-service
+spec:
+  selector:
+    app: prom
+  ports:
+    - protocol: TCP
+      port: 9090 # Port number of service
+      targetPort: 9090 # same as container port
