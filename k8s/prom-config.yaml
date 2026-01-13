@@ -15,4 +15,4 @@ data:
       
       - job_name: 'fastapi'
         static_configs:
-          - targets: ['fastapi-service:8000']
+          - targets: ['fastapi-app-service:8000']
