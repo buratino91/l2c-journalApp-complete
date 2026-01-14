@@ -17,8 +17,22 @@ spec:
       containers:
       - name: prom
         image: prom/prometheus:latest
+        args:
+          - '--config.file=/etc/prometheus/prometheus.yml'
+          - '--storage.tsdb.path=/prometheus'
         ports:
           - containerPort: 9090
+        volumeMounts:
+          - name: prometheus-config-volume
+            mountPath: /etc/prometheus
+          - name: prometheus-storage
+            mountPath: /prometheus
+      volumes:
+      - name: prometheus-config-volume
+        configMap: 
+          name: prom-config
+      - name: prometheus-storage
+        emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
